@@ -13,13 +13,27 @@ class BooksController < ApplicationController
      # ２. データをデータベースに保存するためのsaveメソッド実行
     book.save
      # ３. トップ画面へリダイレクト
-     redirect_to '/'
-
-
+     redirect_to books_path
   end
 
   def index
     @books = Book.all
+  end
+
+  def edit
+    @book = Book.find(params[:id])
+  end
+
+  def update
+    book = Book.find(params[:id])
+    book.update(book_params)
+    redirect_to books_path
+  end
+
+  def destroy
+    book = Books.find(params[:id])
+    book.destroy
+    redirect_to books_path
   end
 
   private
