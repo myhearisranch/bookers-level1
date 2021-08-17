@@ -5,8 +5,9 @@
  <p>本文</p>
  <span><%= book.body %></span>
 
- <%= link_to "編集", edit_book_path(book.id)%>
- <%= link_to "削除", book_path(book.id), method: :delete, "data-confirm" => '本当に削除しますか？' %>
+ <%= link_to "show", book_path(book.id) %>
+ <%= link_to "Edit", edit_book_path(book.id)%>
+ <%= link_to "Destroy", book_path(book.id), method: :delete, "data-confirm" => '本当に削除しますか？' %>
 
 
 <% end %>
