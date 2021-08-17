@@ -12,6 +12,7 @@ class BooksController < ApplicationController
     book = Book.new(book_params)
      # ２. データをデータベースに保存するためのsaveメソッド実行
     book.save
+    flash[:notice]='Book was successfully created.'
      # ３. トップ画面へリダイレクト
      redirect_to books_path
   end
@@ -38,7 +39,8 @@ class BooksController < ApplicationController
   def destroy
     book = Book.find(params[:id])
     book.destroy
-    redirect_to books_path
+     flash[:notice]='Book was successfully destroyed.'
+     redirect_to books_path
   end
 
   private

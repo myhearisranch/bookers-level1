@@ -1,13 +1,14 @@
-<h1>投稿一覧</h1>
+<p><%= flash[:notice] %></p>
+<h1>Books</h1>
 <% @books.each do |book| %>
- <p>タイトル</p>
+ <p>Title</p>
  <span><%= book.title %></span>
- <p>本文</p>
+ <p>Body</p>
  <span><%= book.body %></span>
 
  <%= link_to "show", book_path(book.id) %>
  <%= link_to "Edit", edit_book_path(book.id)%>
- <%= link_to "Destroy", book_path(book.id), method: :delete, "data-confirm" => '本当に削除しますか？' %>
+ <%= link_to "Destroy", book_path(book.id), method: :delete, "data-confirm" => 'Are you sure？' %>
 
 
 <% end %>
