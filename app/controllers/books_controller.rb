@@ -7,14 +7,12 @@ class BooksController < ApplicationController
   end
 
   def create
-     # １. データを新規登録するためのインスタンス作成
-     #list_paramsではフォームで入力されたデータを受け取っています。
-    book = Book.new(book_params)
-     # ２. データをデータベースに保存するためのsaveメソッド実行
-    book.save
-    flash[:notice]='Book was successfully created.'
-     # ３. トップ画面へリダイレクト
-     redirect_to books_path
+    @book = Book.new(book_params)
+    if @book.save
+      flash[:notice]='Book was successfully created.'
+      redirect_to books_path
+    else render :new
+   end
   end
 
   def index
@@ -33,6 +31,7 @@ class BooksController < ApplicationController
   def update
     book = Book.find(params[:id])
     book.update(book_params)
+     flash[:notice]='Book was successfully updateed.'
     redirect_to books_path
   end
 
