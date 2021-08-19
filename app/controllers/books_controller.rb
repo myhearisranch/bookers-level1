@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
 
-　
+
 
   #createは、ボダンを押した時に起こる動作、viewが無い ユーザーに見せる必要が無い
   def create
@@ -8,7 +8,7 @@ class BooksController < ApplicationController
     if @book.save
       flash[:notice]='Book was successfully created.'
       redirect_to books_path
-    else render :new
+    else render :index
    end
   end
 
@@ -25,12 +25,14 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
   end
 
-#編集機能が上手くいかない
+#バリデーションが表示されない
   def update
-    book = Book.find(params[:id])
-    book.update(book_params)
-     #flash[:notice]='Book was successfully updateed.'
-    redirect_to books_path
+    @book = Book.find(params[:id])
+     if @book.update(book_params)
+       flash[:notice]='Book was successfully updateed.'
+       redirect_to books_path
+    else render :edit
+    end
   end
 
   def destroy
