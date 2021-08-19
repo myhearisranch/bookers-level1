@@ -1,11 +1,8 @@
 class BooksController < ApplicationController
 
-  def new
-    # Viewへ渡すためのインスタンス変数に空のモデルオブジェクトを生成する。
-    #空のモデルが生成され、インスタンス変数@listに代入されてViewで利用できるようになります。
-    @book = Book.new
-  end
+　
 
+  #createは、ボダンを押した時に起こる動作、viewが無い ユーザーに見せる必要が無い
   def create
     @book = Book.new(book_params)
     if @book.save
@@ -16,6 +13,7 @@ class BooksController < ApplicationController
   end
 
   def index
+    @book = Book.new
     @books = Book.all
   end
 
@@ -31,7 +29,7 @@ class BooksController < ApplicationController
   def update
     book = Book.find(params[:id])
     book.update(book_params)
-     flash[:notice]='Book was successfully updateed.'
+     #flash[:notice]='Book was successfully updateed.'
     redirect_to books_path
   end
 
@@ -45,7 +43,7 @@ class BooksController < ApplicationController
   private
 
   def book_params
-    params.permit(:title, :body)
+    params.require(:book).permit(:title, :body)
   end
 
 end
