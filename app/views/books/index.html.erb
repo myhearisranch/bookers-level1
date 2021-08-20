@@ -1,10 +1,12 @@
-<p><%= flash[:notice] %></p>
+
 <h1>Books</h1>
+
 <table>
  <tr>
   <th width='100'>Title</th>
   <th>Body</th>
  </tr>
+
 <% @books.each do |book| %>
 <tr>
  <td><%= book.title %></td>
@@ -14,11 +16,12 @@
  <td width='30'><%= link_to "Destroy", book_path(book.id), method: :delete, "data-confirm" => 'Are you sure？' %></td>
 </tr>
 <% end %>
+
 </table>
 
 <h1>New book</h1>
 <% if @book.errors.any? %>
-  <%= @book.errors.count %>件のエラーが発生しました。
+  <%= @book.errors.count %>件のerrorが発生しました。
   <% @book.errors.full_messages.each do |message| %>
    <%= message %>
   <% end %>
